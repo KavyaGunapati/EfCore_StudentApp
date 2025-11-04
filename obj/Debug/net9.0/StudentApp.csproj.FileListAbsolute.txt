@@ -166,3 +166,4 @@ C:\Users\GunapatiKavya\Desktop\DotNet\EfCore\StudentApp\obj\Debug\net9.0\refint\
 C:\Users\GunapatiKavya\Desktop\DotNet\EfCore\StudentApp\obj\Debug\net9.0\StudentApp.pdb
 C:\Users\GunapatiKavya\Desktop\DotNet\EfCore\StudentApp\obj\Debug\net9.0\StudentApp.genruntimeconfig.cache
 C:\Users\GunapatiKavya\Desktop\DotNet\EfCore\StudentApp\obj\Debug\net9.0\ref\StudentApp.dll
+C:\Users\GunapatiKavya\Desktop\DotNet\EfCore\StudentApp\obj\Debug\net9.0\StudentApp.sourcelink.json
