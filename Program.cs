@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using StudentApp.Data;
 using StudentApp.Models;
@@ -38,7 +38,7 @@ namespace StudentApp
                     case 0: return;
                     default:
                         Console.WriteLine("Invalid choice. Press any key to continue...");
-                        Console.ReadKey();
+                       
                         break;
                 }
             }
@@ -55,7 +55,7 @@ namespace StudentApp
             var courses = db.Courses.ToList();
             if (courses.Count == 0)
             {
-                Console.WriteLine("⚠️ No courses found. Please add a course first!");
+                Console.WriteLine(" No courses found. Please add a course first!");
                 Console.ReadKey();
                 return;
             }
@@ -68,7 +68,7 @@ namespace StudentApp
             var course = db.Courses.Find(courseId);
             if (course == null)
             {
-                Console.WriteLine("⚠️ Invalid Course Id.");
+                Console.WriteLine("Invalid Course Id.");
                 Console.ReadKey();
                 return;
             }
@@ -78,17 +78,40 @@ namespace StudentApp
                 var student = new Student { Name = name, Age = age, CourseId = courseId };
                 db.Students.Add(student);
                 db.SaveChanges();
-                Console.WriteLine("✅ Student added successfully!");
+                Console.WriteLine("Student added successfully!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Failed to add student: {ex.Message}");
+                Console.WriteLine($" Failed to add student: {ex.Message}");
             }
 
             Console.ReadKey();
         }
 
-       
+        static void ViewStudents(AppDbContext db)
+        {
+            Console.Clear();
+            Console.WriteLine("=== All Students ===");
+
+            try
+            {
+                var students = db.Students.Include(s => s.Course).ToList();
+                if (students.Count == 0)
+                    Console.WriteLine("No students found.");
+                else
+                {
+                    foreach (var s in students)
+                        Console.WriteLine($"{s.Id}: {s.Name} ({s.Age}) - {s.Course?.Title}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" Error loading students: {ex.Message}");
+            }
+
+            Console.ReadKey();
+        }
+
         static void UpdateStudent(AppDbContext db)
         {
             Console.Clear();
