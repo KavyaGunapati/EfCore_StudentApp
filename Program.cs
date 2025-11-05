@@ -88,30 +88,7 @@ namespace StudentApp
             Console.ReadKey();
         }
 
-        static void ViewStudents(AppDbContext db)
-        {
-            Console.Clear();
-            Console.WriteLine("=== All Students ===");
-
-            try
-            {
-                var students = db.Students.Include(s => s.Course).ToList();
-                if (students.Count == 0)
-                    Console.WriteLine("No students found.");
-                else
-                {
-                    foreach (var s in students)
-                        Console.WriteLine($"{s.Id}: {s.Name} ({s.Age}) - {s.Course?.Title}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"❌ Error loading students: {ex.Message}");
-            }
-
-            Console.ReadKey();
-        }
-
+       
         static void UpdateStudent(AppDbContext db)
         {
             Console.Clear();
